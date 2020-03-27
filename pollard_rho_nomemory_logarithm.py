@@ -16,26 +16,23 @@ def count_X(alfa1, beta1, alfa2, beta2):
 def step(A, (alfa, beta)):
     set_number = A % 3
     if set_number == 0:
-        return ((A * _y) % _p), (alfa + 1, beta)
+        return (A ** 2 % _p), (alfa * 2, beta * 2)
     if set_number == 1:
-        return (A**2 % _p), (alfa * 2, beta * 2)
-    if set_number == 2:
         return ((A * _g) % _p), (alfa, beta + 1)
+    if set_number == 2:
+        return ((A * _y) % _p), (alfa + 1, beta)
 
-def iterate(A, (alfa_A, beta_A), B, (alfa_B, beta_B)):
-    return step(A, (alfa_A, beta_A)),\
-           step(step(B, (alfa_B, beta_B)))
 
 def pollard_rho():
     # alfa- power of _y value
     alfa_A = 0
     alfa_B = 0
     # beta- power of _g value
-    beta_A = 1
-    beta_B = 2
+    beta_A = 0
+    beta_B = 0
 
-    A = count_value(alfa_A, beta_B)
-    B = count_value(alfa_B, beta_B)
+    A = 1
+    B = 1
 
     A, (alfa_A, beta_A) = step(A, (alfa_A, beta_A))
     B, (alfa_B, beta_B) = step(B, (alfa_B, beta_B))
@@ -48,5 +45,6 @@ def pollard_rho():
 
     print(A, B)
     return count_X(alfa_B, beta_B, alfa_A, beta_A)
+
 
 print(pollard_rho())
