@@ -35,7 +35,8 @@ def count_X(alfa1, beta1, alfa2, beta2):
         return result + order
 
 
-def step(A, (alfa, beta)):
+def step(A, params):
+    alfa, beta = params
     set_number = A % 3
     if set_number == 0:
         return (A ** 2 % _p), ((alfa * 2)%order, (beta * 2)%order)
